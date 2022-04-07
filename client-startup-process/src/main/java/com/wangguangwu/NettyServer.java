@@ -1,4 +1,4 @@
-package com.wanggaunwgu;
+package com.wangguangwu;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -11,11 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Server startup process.
- * <p>
- * three parameters:
- * 1. thread model
- * 2. IO model
- * 3. connection read and write processing logic
  *
  * @author wangguangwu
  */
@@ -25,41 +20,27 @@ public class NettyServer {
     private static final int SERVER_PORT = 8080;
 
     public static void main(String[] args) {
-        // listen port, accept new connection
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
-        // handle with connection
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
-        // create a guide class
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
         final AttributeKey<Object> serverKey = AttributeKey.newInstance("serverName");
         final AttributeKey<Object> clientKey = AttributeKey.newInstance("clientKey");
 
         serverBootstrap
-                // configure thread group
                 .group(bossGroup, workerGroup)
-                // specify the io model
                 .channel(NioServerSocketChannel.class)
-                // specify some attributes
                 .attr(serverKey, "nettyServer")
                 .childAttr(clientKey, "nettyClient")
-                // the maximum length of the queue that temporarily stores requests that have completed the three-way handshake
                 .option(ChannelOption.SO_BACKLOG, 1024)
-                // enable the underlying heartbeat mechanism of TCP
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
-                // turn on Nagle's algorithm
                 .childOption(ChannelOption.TCP_NODELAY, true)
-                // handle server running
-                // If high real-time performance is required, it is sent immediately when there is data to be sent, and it is turned off.
-                // If it is necessary to reduce the number of transmissions and reduce network interaction, turn it on.
                 .handler(new ChannelInitializer<NioServerSocketChannel>() {
                     @Override
                     protected void initChannel(NioServerSocketChannel ch) {
-                        // get attribute
-                        log.info("{} is running....", ch.attr(serverKey).get());
+                        log.info("{} is running", ch.attr(serverKey).get());
                     }
                 })
-                // define data handle for each connection
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
@@ -71,13 +52,11 @@ public class NettyServer {
     }
 
     private static void bind(ServerBootstrap serverBootstrap, int port) {
-        // bind() will return a channelFuture immediately
-        // add a listener to handle with return value
         serverBootstrap.bind(port).addListener(future -> {
             if (future.isSuccess()) {
                 log.info("port [{}] binding success", port);
             } else {
-                log.error("port [{}] binding failed", port);
+                log.error("port [{}] binding error", port);
                 bind(serverBootstrap, port + 1);
             }
         });
