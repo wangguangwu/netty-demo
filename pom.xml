@@ -14,6 +14,7 @@
         <module>client-startup-process</module>
         <module>logger</module>
         <module>two-way-communication-betwwen-client-and-server</module>
+        <module>byteBuf</module>
     </modules>
 
     <properties>
