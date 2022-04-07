@@ -13,6 +13,7 @@
         <module>server-startup-process</module>
         <module>client-startup-process</module>
         <module>logger</module>
+        <module>two-way-communication-betwwen-client-and-server</module>
     </modules>
 
     <properties>
