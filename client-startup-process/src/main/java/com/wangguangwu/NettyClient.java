@@ -13,6 +13,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Client startup process.
+ * three parameters
+ * <p>
+ * 1. thread model
+ * 2. IO model
+ * 3. business logic processing
  *
  * @author wangguangwu
  */
@@ -28,12 +33,16 @@ public class NettyClient {
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap
+                // 1. specify thread model
                 .group(workerGroup)
+                // 2. specify NIO type
                 .channel(NioSocketChannel.class)
                 .attr(clientKey, "nettyClient")
+                // set tcp low-level properties
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
+                // 3. business logic processing
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) {
@@ -41,7 +50,7 @@ public class NettyClient {
                     }
                 });
 
-
+        // connect server
         connect(bootstrap, "127.0.0.1", 8080, MAX_RETRY);
     }
 
