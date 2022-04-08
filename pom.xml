@@ -16,6 +16,7 @@
         <module>two-way-communication-between-client-and-server</module>
         <module>byteBuf</module>
         <module>protocol</module>
+        <module>client-login</module>
     </modules>
 
     <properties>
