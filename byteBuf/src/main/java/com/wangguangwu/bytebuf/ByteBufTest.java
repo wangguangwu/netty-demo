@@ -1,4 +1,4 @@
-package com.wangguangwu.buffer;
+package com.wangguangwu.bytebuf;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;

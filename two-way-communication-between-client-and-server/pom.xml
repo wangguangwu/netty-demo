@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>two-way-communication-betwwen-client-and-server</artifactId>
+    <artifactId>two-way-communication-between-client-and-server</artifactId>
 
     <dependencies>
         <dependency>
