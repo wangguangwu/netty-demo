@@ -17,6 +17,7 @@
         <module>byteBuf</module>
         <module>protocol</module>
         <module>client-login</module>
+        <module>client-and-server-communcation</module>
     </modules>
 
     <properties>
