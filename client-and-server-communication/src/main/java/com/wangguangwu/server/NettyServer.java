@@ -34,7 +34,6 @@ public class NettyServer {
                                 .addLast(new ServerHandler());
                     }
                 });
-
         bind(serverBootstrap, PORT);
     }
 

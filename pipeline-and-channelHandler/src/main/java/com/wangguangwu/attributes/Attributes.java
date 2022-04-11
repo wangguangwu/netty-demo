@@ -1,4 +1,4 @@
-package com.wangguangwu.attribute;
+package com.wangguangwu.attributes;
 
 import io.netty.util.AttributeKey;
 
@@ -11,4 +11,5 @@ public final class Attributes {
 
     private Attributes() {
     }
+
 }

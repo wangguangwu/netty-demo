@@ -9,4 +9,5 @@ public final class SerializerAlgorithm {
 
     private SerializerAlgorithm() {
     }
+
 }
