@@ -19,6 +19,7 @@
         <module>client-login</module>
         <module>client-and-server-communication</module>
         <module>pipeline-and-channelHandler</module>
+        <module>client-and-server-pipeline</module>
     </modules>
 
     <properties>

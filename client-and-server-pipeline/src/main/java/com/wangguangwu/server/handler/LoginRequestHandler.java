@@ -1,0 +1,42 @@
+package com.wangguangwu.server.handler;
+
+import com.wangguangwu.protocol.request.LoginRequestPacket;
+import com.wangguangwu.protocol.response.LoginResponsePacket;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
+
+/**
+ * @author wangguangwu
+ */
+@Slf4j
+public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket msg) {
+        log.info("{}: receive client login request", new Date());
+
+        LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
+        loginResponsePacket.setVersion(msg.getVersion());
+
+        if (valid(msg)) {
+            loginResponsePacket.setSuccess(true);
+            log.info("{}: login success", new Date());
+        } else {
+            loginResponsePacket.setSuccess(false);
+            loginResponsePacket.setReason("account password valid error");
+            log.error("{}: login error", new Date());
+        }
+
+        // login response
+        ctx.channel().writeAndFlush(loginResponsePacket);
+    }
+
+    private boolean valid(LoginRequestPacket loginRequestPacket) {
+        log.info("LoginRequestHandler: {}", loginRequestPacket);
+        return loginRequestPacket != null;
+    }
+
+}
