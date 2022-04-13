@@ -2,6 +2,7 @@ package com.wangguangwu.server.handler;
 
 import com.wangguangwu.protocol.request.LoginRequestPacket;
 import com.wangguangwu.protocol.response.LoginResponsePacket;
+import com.wangguangwu.util.LoginUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         if (valid(msg)) {
             loginResponsePacket.setSuccess(true);
             log.info("{}: login success", new Date());
+            LoginUtil.markAsLogin(ctx.channel());
         } else {
             loginResponsePacket.setSuccess(false);
             loginResponsePacket.setReason("account password valid failed");

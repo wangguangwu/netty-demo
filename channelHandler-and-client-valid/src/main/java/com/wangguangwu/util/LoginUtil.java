@@ -16,7 +16,7 @@ public final class LoginUtil {
     public static boolean hasLogin(Channel channel) {
         Attribute<Boolean> loginAttr = channel.attr(Attributes.LOGIN);
 
-        return loginAttr != null;
+        return loginAttr.get() != null;
     }
 
     private LoginUtil() {
