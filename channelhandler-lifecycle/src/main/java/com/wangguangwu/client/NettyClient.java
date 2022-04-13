@@ -45,7 +45,6 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) {
-//                        ch.pipeline().addLast(new FirstClientHandler());
                         ch.pipeline().addLast(new Splitter());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginResponseHandler());
@@ -86,10 +85,7 @@ public class NettyClient {
                             Scanner scanner = new Scanner(System.in);
                             String line = scanner.nextLine();
 
-                            int times = 1000;
-                            for (int i = 0; i < times; i++) {
-                                channel.writeAndFlush(new MessageRequestPacket(line));
-                            }
+                            channel.writeAndFlush(new MessageRequestPacket(line));
                         }
                     }
                 }
