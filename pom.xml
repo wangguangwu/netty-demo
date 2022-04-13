@@ -20,6 +20,7 @@
         <module>client-and-server-communication</module>
         <module>pipeline-and-channelHandler</module>
         <module>client-and-server-pipeline</module>
+        <module>unpacking-and-sticking-and-solutions</module>
     </modules>
 
     <properties>
