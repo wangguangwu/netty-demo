@@ -23,16 +23,17 @@
         <module>unpacking-and-sticking-and-solutions</module>
         <module>channelhandler-lifecycle</module>
         <module>channelHandler-and-client-valid</module>
+        <module>client-communication</module>
     </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <netty-all.version>4.1.75.Final</netty-all.version>
-        <lombok.version>1.18.22</lombok.version>
+        <netty-all.version>4.1.76.Final</netty-all.version>
+        <lombok.version>1.18.24</lombok.version>
         <slf4j-api.version>1.7.36</slf4j-api.version>
         <slf4j-simple.version>1.7.36</slf4j-simple.version>
-        <fastjson.version>1.2.80</fastjson.version>
+        <fastjson.version>2.0.1</fastjson.version>
         <junit.version>4.13.2</junit.version>
         <logback-classic.version>1.2.11</logback-classic.version>
         <junit.version>4.13.2</junit.version>
