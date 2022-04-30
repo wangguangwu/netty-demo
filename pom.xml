@@ -24,6 +24,7 @@
         <module>channelhandler-lifecycle</module>
         <module>channelHandler-and-client-valid</module>
         <module>client-communication</module>
+        <module>communication</module>
     </modules>
 
     <properties>
