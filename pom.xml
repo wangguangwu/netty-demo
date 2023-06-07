@@ -12,6 +12,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netty-version>4.1.6.Final</netty-version>
+        <lombok.version>1.16.12</lombok.version>
+        <fastjson.version>2.0.33</fastjson.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <modules>
@@ -19,6 +22,7 @@
         <module>chapter2</module>
         <module>chapter3</module>
         <module>chapter4</module>
+        <module>chapter5</module>
     </modules>
 
     <dependencyManagement>
@@ -27,6 +31,24 @@
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>${netty-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
