@@ -1,12 +1,6 @@
 package com.wangguangwu.client;
 
-import com.wangguangwu.protocol.PacketCodeC;
-import com.wangguangwu.protocol.request.MessageRequestPacket;
-import com.wangguangwu.util.LoginUtil;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -14,7 +8,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.Date;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,9 +43,7 @@ public class NettyClient {
         bootstrap.connect(host, port)
                 .addListener(future -> {
                     if (future.isSuccess()) {
-                        System.out.println("连接成功!，启动控制台线程");
-                        Channel channel = ((ChannelFuture) future).channel();
-                        startConsoleThread(channel);
+                        System.out.println("连接成功!");
                     } else if (retry == 0) {
                         System.err.println("重试次数已用完，放弃连接！");
                     } else {
@@ -67,27 +58,5 @@ public class NettyClient {
                                 .schedule(() -> connect(bootstrap, host, port, retry - 1), delay, TimeUnit.SECONDS);
                     }
                 });
-    }
-
-    private static void startConsoleThread(Channel channel) {
-        new Thread(() -> {
-            Scanner sc = new Scanner(System.in);
-            while (!Thread.interrupted()) {
-                // TODO：能否用责任链模式优化
-                if (LoginUtil.hasLogin(channel)) {
-                    System.out.println("输入消息发送至服务端: ");
-                    String line = sc.nextLine();
-
-                    sendMessage(channel, line);
-                }
-            }
-        }).start();
-    }
-
-    private static void sendMessage(Channel channel, String line) {
-        MessageRequestPacket packet = new MessageRequestPacket();
-        packet.setMessage(line);
-        ByteBuf byteBuf = PacketCodeC.INSTANCE.encode(channel.alloc(), packet);
-        channel.writeAndFlush(byteBuf);
     }
 }
