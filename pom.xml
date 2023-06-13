@@ -34,6 +34,7 @@
         <module>chapter13</module>
         <module>chapter14</module>
         <module>c10k</module>
+        <module>chapter15</module>
     </modules>
 
     <dependencyManagement>
