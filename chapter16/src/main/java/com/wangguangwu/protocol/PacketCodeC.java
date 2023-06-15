@@ -1,7 +1,5 @@
 package com.wangguangwu.protocol;
 
-import com.wangguangwu.attribute.protocol.request.*;
-import com.wangguangwu.attribute.protocol.response.*;
 import com.wangguangwu.protocol.command.Command;
 import com.wangguangwu.protocol.request.*;
 import com.wangguangwu.protocol.response.*;
